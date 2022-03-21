@@ -10,6 +10,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddMemoryCache();
 builder.Services.AddHttpClient();
 builder.Services.AddScoped<IHttpClientRequester<IRequestModel, IResponseModel>, HttpClientRequester<IRequestModel, IResponseModel>>();
 

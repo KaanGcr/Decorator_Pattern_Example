@@ -25,7 +25,7 @@ namespace DecoratorPattern.Decos
             if (_cache.TryGetValue<CurrencyModel>(cacheKey, out var currencies
                 ))
             {
-                return currencies;
+
             }
 
             var response = await _innerRequestHandler.SendHttpClientRequest<TRequest, TResponse>(T, Url, HttpMethod);
