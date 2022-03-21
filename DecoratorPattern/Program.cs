@@ -1,5 +1,8 @@
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using DecoratorPattern.Models;
 using DecoratorPattern.Services;
+using DecoratorPattern.Utilities;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +16,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddMemoryCache();
 builder.Services.AddHttpClient();
 builder.Services.AddScoped<IHttpClientRequester<IRequestModel, IResponseModel>, HttpClientRequester<IRequestModel, IResponseModel>>();
+
+builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
+builder.Host.ConfigureContainer<ContainerBuilder>(builder => builder.RegisterModule(new DependencyResolver()));
 
 var app = builder.Build();
 
